@@ -1,0 +1,15 @@
+﻿<Properties StartupConfiguration="{FD1AC5A5-8D78-9554-7C10-A3DA0217FCC1}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/flock.cs">
+    <Files>
+      <File FileName="Assets/flock.cs" Line="6" Column="5" />
+      <File FileName="Assets/globalFlock.cs" Line="17" Column="12" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Flocking PreferredExecutionTarget="Unity.Editor" />
+  <MultiItemStartupConfigurations />
+</Properties>
