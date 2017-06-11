@@ -1,4 +1,4 @@
-﻿﻿using System.Collections;
+﻿﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +16,9 @@ public class flock : MonoBehaviour {
 	float neighborDist = 2.0f;
 
 	bool turning = false;
+
+    //initialize speed multiplier that will be controlled by slider
+    public float speedMult = 1;
 
 	// Use this for initialization
 	void Start()
@@ -44,7 +47,7 @@ public class flock : MonoBehaviour {
 			transform.rotation = Quaternion.Slerp(transform.rotation,
 									  Quaternion.LookRotation(direction),
 									  rotSpeed * Time.deltaTime);
-			speed = Random.Range(0.5f, 1);
+            speed = Random.Range(0.5f, 1) * speedMult;
 		}
 		else
 		{
@@ -55,7 +58,7 @@ public class flock : MonoBehaviour {
 				Flocking();
 			}
 		}
-		transform.Translate(0, 0, Time.deltaTime * speed);
+        transform.Translate(0, 0, Time.deltaTime * speed * speedMult);
 	}
 
 	// Flock using flocking rules
@@ -106,7 +109,7 @@ public class flock : MonoBehaviour {
 		{
 			//calculate average center and average speed of group
 			centerVec = centerVec / groupSize + (goalPos - this.transform.position);
-			speed = groupSpeed / groupSize;
+            speed = groupSpeed / groupSize * speedMult;
 
 			//change the direction of the bug after determing the new direction vector
 			Vector3 direction = (centerVec + avoidVec) - this.transform.position;

@@ -1,4 +1,4 @@
-﻿﻿using System.Collections;
+﻿﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +18,17 @@ public class globalFlock : MonoBehaviour {
 
 	//instantiating goal position
 	public static Vector3 goalPos = Vector3.zero;
+
+
+    //set bug speedMult to be the slider's multiplier
+    public void BugSpeed(float speedMult) 
+    {
+        Debug.Log(speedMult);
+        for (int i = 0; i < numbugs; i += 1) 
+        {
+            allBugs[i].GetComponent<flock>().speedMult = speedMult;
+        }
+    }
 
 	// Use this for initialization
 	void Start()
