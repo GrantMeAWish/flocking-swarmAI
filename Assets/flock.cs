@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class flock : MonoBehaviour {
 
+	//bug speed
 	public float speed = 0.001f;
+
+	//how fast bug will turn
 	float rotSpeed = 4.0f;
 	//Vector3 avgHeading;
 	//Vector3 avgPosition;
+
+	//max distance bugs can be to flock
 	float neighborDist = 2.0f;
 
 	bool turning = false;
@@ -21,7 +26,9 @@ public class flock : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
-		if (Vector3.Distance(transform.position, Vector3.zero) >= globalFlock.tankSize)
+
+		//bug needs turn back into colony if distance of bug from center is bigger than colonySize
+		if (Vector3.Distance(transform.position, Vector3.zero) >= globalFlock.colonySize)
 		{
 			turning = true;
 		}
@@ -30,6 +37,7 @@ public class flock : MonoBehaviour {
 			turning = false;
 		}
 
+		//calculate direction back towards center of colony and turn fish back in that direction
 		if (turning)
 		{
 			Vector3 direction = Vector3.zero - transform.position;
@@ -40,6 +48,8 @@ public class flock : MonoBehaviour {
 		}
 		else
 		{
+
+			//flock every so often
 			if (Random.Range(0, 5) < 1)
 			{
 				Flocking();
@@ -48,51 +58,64 @@ public class flock : MonoBehaviour {
 		transform.Translate(0, 0, Time.deltaTime * speed);
 	}
 
-    // Flock using boid rules
-    void Flocking()
-    {
-        GameObject[] gameObjs = globalFlock.allFish;
-        Vector3 centerVec = Vector3.zero;
-        Vector3 avoidVec = Vector3.zero;
-        float groupSpeed = 0.1f;
+	// Flock using flocking rules
+	void Flocking()
+	{
+		GameObject[] gameObjs = globalFlock.allBugs;
+		float groupSpeed = 0.1f;
 
-        Vector3 goalPos = globalFlock.goalPos;
-        float dist;
+		/**instantiate vectors for rules 1 & 3 of flocking --> go towards center
+		  *of group & avoid collisions with neighbors*/
+		Vector3 centerVec = Vector3.zero;
+		Vector3 avoidVec = Vector3.zero;
 
-        int groupSize = 0;
-        foreach (GameObject gameObj in gameObjs)
-        {
-            if (gameObj != this.gameObject)
-            {
-                dist = Vector3.Distance(gameObj.transform.position, this.transform.position);
-                if (dist <= neighborDist)
-                {
-                    centerVec += gameObj.transform.position;
-                    groupSize += 1;
+		Vector3 goalPos = globalFlock.goalPos;
 
-                    if (dist < 1.0f)
-                    {
-                        avoidVec += (this.transform.position - gameObj.transform.position);
-                    }
+		float dist;
 
-                    flock anotherFlock = gameObj.GetComponent<flock>();
-                    groupSpeed += anotherFlock.speed;
-                }
-            }
-        }
+		int groupSize = 0;
+		foreach (GameObject gameObj in gameObjs)
+		{
+			if (gameObj != this.gameObject)
+			{
+				dist = Vector3.Distance(gameObj.transform.position, this.transform.position);
 
-        if (groupSize > 0)
-        {
-            centerVec = centerVec / groupSize + (goalPos - this.transform.position);
-            speed = groupSpeed / groupSize;
+				//only account for neighbor bugs close enough to form group
+				if (dist <= neighborDist)
+				{
 
-            Vector3 direction = (centerVec + avoidVec) - this.transform.position;
-            if (direction != Vector3.zero)
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation,
-                                                      Quaternion.LookRotation(direction),
-                                                      rotSpeed * Time.deltaTime);
-            }
-        }
-    }
+					//add up center vectors for group and increment the group size each time
+					centerVec += gameObj.transform.position;
+					groupSize += 1;
+
+					//calculate & add up avoid vectors to prevent collisions if distance too close
+					if (dist < 1.0f)
+					{
+						avoidVec += (this.transform.position - gameObj.transform.position);
+					}
+
+					//grab flock script from neighbor bug and sum up speeds
+					flock anotherFlock = gameObj.GetComponent<flock>();
+					groupSpeed += anotherFlock.speed;
+				}
+			}
+		}
+
+
+		if (groupSize > 0)
+		{
+			//calculate average center and average speed of group
+			centerVec = centerVec / groupSize + (goalPos - this.transform.position);
+			speed = groupSpeed / groupSize;
+
+			//change the direction of the bug after determing the new direction vector
+			Vector3 direction = (centerVec + avoidVec) - this.transform.position;
+			if (direction != Vector3.zero)
+			{
+				transform.rotation = Quaternion.Slerp(transform.rotation,
+													  Quaternion.LookRotation(direction),
+													  rotSpeed * Time.deltaTime);
+			}
+		}
+	}
 }
