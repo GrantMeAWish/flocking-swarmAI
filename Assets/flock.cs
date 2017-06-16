@@ -5,12 +5,10 @@ using UnityEngine;
 public class flock : MonoBehaviour {
 
 	//bug speed
-	public float speed = 0.001f;
+	public float speed = 0.0005f;
 
 	//how fast bug will turn
 	float rotSpeed = 4.0f;
-	//Vector3 avgHeading;
-	//Vector3 avgPosition;
 
 	//max distance bugs can be to flock
 	float neighborDist = 2.0f;
@@ -19,6 +17,9 @@ public class flock : MonoBehaviour {
 
     //initialize speed multiplier that will be controlled by slider
     public float speedMult = 1;
+
+    //distance from camera of destination point
+    public float cameraDist = 5.0f;
 
 	// Use this for initialization
 	void Start()
@@ -30,7 +31,7 @@ public class flock : MonoBehaviour {
 	void Update()
 	{
 
-		//bug needs turn back into colony if distance of bug from center is bigger than colonySize
+		//bug needs to turn back into colony if distance of bug from center is bigger than colonySize
 		if (Vector3.Distance(transform.position, Vector3.zero) >= globalFlock.colonySize)
 		{
 			turning = true;
@@ -56,10 +57,15 @@ public class flock : MonoBehaviour {
 			if (Random.Range(0, 5) < 1)
 			{
 				Flocking();
-			}
+
+                /*
+                //moves bug in direction camera is facing
+                transform.position += Camera.main.transform.forward * cameraDist * Time.deltaTime;
+                */
+            }
 		}
         transform.Translate(0, 0, Time.deltaTime * speed * speedMult);
-	}
+    }
 
 	// Flock using flocking rules
 	void Flocking()
@@ -111,7 +117,7 @@ public class flock : MonoBehaviour {
 			centerVec = centerVec / groupSize + (goalPos - this.transform.position);
             speed = groupSpeed / groupSize * speedMult;
 
-			//change the direction of the bug after determing the new direction vector
+			//change the direction of the bug after determining the new direction vector
 			Vector3 direction = (centerVec + avoidVec) - this.transform.position;
 			if (direction != Vector3.zero)
 			{

@@ -9,9 +9,9 @@ public class globalFlock : MonoBehaviour {
 	public GameObject goalPrefab;
 
 	//instantiating colony box dimensions
-	public static int colonySize = 5;
+	public static int colonySize = 10;
 
-	static int numbugs = 10;
+	static int numbugs = 400;
 
 	//instantiating the swarm colony
 	public static GameObject[] allBugs = new GameObject[numbugs];
@@ -45,13 +45,19 @@ public class globalFlock : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
+        
 		//at random timeframes move goal to another location within the colony
 		if (Random.Range(0, 10000) < 50)
 		{
+            /*
 			goalPos = new Vector3(Random.Range(-colonySize, colonySize),
 									  Random.Range(-colonySize, colonySize),
 									  Random.Range(-colonySize, colonySize));
-			goalPrefab.transform.position = goalPos;
-		}
-	}
+            goalPrefab.transform.position = goalPos;
+            */
+        }
+
+        //allows bugs to follow user-controlled goal marker
+        goalPos = goalPrefab.transform.position;
+    }
 }
