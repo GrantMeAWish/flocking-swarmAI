@@ -18,9 +18,6 @@ public class flock : MonoBehaviour {
     //initialize speed multiplier that will be controlled by slider
     public float speedMult = 1;
 
-    //distance from camera of destination point
-    public float cameraDist = 5.0f;
-
 	// Use this for initialization
 	void Start()
 	{
@@ -41,7 +38,7 @@ public class flock : MonoBehaviour {
 			turning = false;
 		}
 
-		//calculate direction back towards center of colony and turn fish back in that direction
+		//calculate direction back towards center of colony and turn bug back in that direction
 		if (turning)
 		{
 			Vector3 direction = Vector3.zero - transform.position;
@@ -52,18 +49,12 @@ public class flock : MonoBehaviour {
 		}
 		else
 		{
-
 			//flock every so often
 			if (Random.Range(0, 5) < 1)
 			{
-				Flocking();
-
-                /*
-                //moves bug in direction camera is facing
-                transform.position += Camera.main.transform.forward * cameraDist * Time.deltaTime;
-                */
+                Flocking();
             }
-		}
+        }
         transform.Translate(0, 0, Time.deltaTime * speed * speedMult);
     }
 

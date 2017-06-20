@@ -19,6 +19,8 @@ public class globalFlock : MonoBehaviour {
 	//instantiating goal position
 	public static Vector3 goalPos = Vector3.zero;
 
+    //distance from camera of destination point
+    public float cameraDist = 5.0f;
 
     //set bug speedMult to be the slider's multiplier
     public void BugSpeed(float speedMult) 
@@ -38,16 +40,15 @@ public class globalFlock : MonoBehaviour {
 			Vector3 pos = new Vector3(Random.Range(-colonySize, colonySize),
 									  Random.Range(-colonySize, colonySize),
 									  Random.Range(-colonySize, colonySize));
-            allBugs[i] = (GameObject)Instantiate(bugPrefab, pos, Quaternion.identity);
+            allBugs[i] = (GameObject) Instantiate(bugPrefab, pos, Quaternion.identity);
 		}
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-        
-		//at random timeframes move goal to another location within the colony
-		if (Random.Range(0, 10000) < 50)
+        //move goal to another location within the colony at random timeframes
+        if (Random.Range(0, 10000) < 50)
 		{
             /*
 			goalPos = new Vector3(Random.Range(-colonySize, colonySize),
@@ -56,8 +57,16 @@ public class globalFlock : MonoBehaviour {
             goalPrefab.transform.position = goalPos;
             */
         }
-
-        //allows bugs to follow user-controlled goal marker
+        /*
+        //allow bugs to follow user-controlled goal marker
         goalPos = goalPrefab.transform.position;
+        */
+
+        //allow bugs to follow camera view
+        goalPos = Camera.main.transform.forward * cameraDist * Time.deltaTime;
+        
+        /*
+        goalPos = Quaternion.Lerp(Camera.main.transform.localRotation, vrCamera.main.transform.localRotation, Time.deltaTime);
+        */
     }
 }
