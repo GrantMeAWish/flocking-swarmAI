@@ -20,7 +20,7 @@ public class globalFlock : MonoBehaviour {
 	public static Vector3 goalPos = Vector3.zero;
 
     //distance from camera of destination point
-    public float cameraDist = 5.0f;
+    public static float cameraDist = 5.0f;
 
     //set bug speedMult to be the slider's multiplier
     public void BugSpeed(float speedMult) 
@@ -61,12 +61,9 @@ public class globalFlock : MonoBehaviour {
         //allow bugs to follow user-controlled goal marker
         goalPos = goalPrefab.transform.position;
         */
-
+        
         //allow bugs to follow camera view
         goalPos = Camera.main.transform.forward * cameraDist * Time.deltaTime;
         
-        /*
-        goalPos = Quaternion.Lerp(Camera.main.transform.localRotation, vrCamera.main.transform.localRotation, Time.deltaTime);
-        */
     }
 }
