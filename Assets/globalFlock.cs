@@ -57,13 +57,13 @@ public class globalFlock : MonoBehaviour {
             goalPrefab.transform.position = goalPos;
             */
         }
-        /*
+        
         //allow bugs to follow user-controlled goal marker
         goalPos = goalPrefab.transform.position;
-        */
         
+        /*
         //allow bugs to follow camera view
         goalPos = Camera.main.transform.forward * cameraDist * Time.deltaTime;
-        
+        */
     }
 }

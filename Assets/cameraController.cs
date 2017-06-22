@@ -4,20 +4,12 @@ using UnityEngine;
 
 public class cameraController : MonoBehaviour {
 
+    public float speed;
     private Rigidbody rb;
-    private string leftControl;
 
 	// Use this for initialization
 	void Start () {
-        string[] controllers = Input.GetJoystickNames();
-
-        for (int i = 0; i < controllers.Length; i++)
-        {
-            if (controllers[i] == "Oculus Touch - Left")
-            {
-                leftControl = controllers[i];
-            }
-        }
+        rb = GetComponent<Rigidbody>();
     }
 	
 	// Update is called once per frame
@@ -25,8 +17,6 @@ public class cameraController : MonoBehaviour {
         float moveHorizontal = Input.GetAxis("VRHorizontal");
         float moveVertical = Input.GetAxis("VRVertical");
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-
-        rb.AddForce(movement);
+        rb.velocity = new Vector3(moveHorizontal, 0.0f, moveVertical) * speed;
 	}
 }

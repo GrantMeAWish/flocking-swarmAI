@@ -1,9 +1,8 @@
-﻿<Properties StartupConfiguration="{F0882C1A-09DA-4883-9719-35B826EAECAA}|">
-  <MonoDevelop.Ide.ItemProperties.flocking-swarmAI PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/globalFlock.cs">
+﻿<Properties StartupConfiguration="{F0882C1A-09DA-4883-9719-35B826EAECAA}|" StartupItem="flocking-swarmAI.csproj">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\globalFlock.cs">
     <Files>
-      <File FileName="Assets/globalFlock.cs" Line="14" Column="23" />
-      <File FileName="Assets/flock.cs" Line="123" Column="3" />
+      <File FileName="Assets\globalFlock.cs" Line="14" Column="23" />
+      <File FileName="Assets\flock.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
@@ -12,4 +11,5 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.flocking-swarmAI PreferredExecutionTarget="Unity.Editor" />
 </Properties>
