@@ -4,16 +4,29 @@ using UnityEngine;
 
 public class cameraController : MonoBehaviour {
 
+    //camera movement speed
     public float speed;
+
+    //apply physics to camera
     private Rigidbody rb;
 
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
+
+        /*
+        //print connected joysticks
+        string[] joysticks = Input.GetJoystickNames();
+        for (int i = 0; i < joysticks.Length; i++)
+        {
+            print(joysticks[i] + i.ToString());
+        }
+        */
     }
 	
-	// Update is called once per frame
-	void FixedUpdate () {
+    //assign joystick movement as camera velocity
+	private void FixedUpdate ()
+    {
         float moveHorizontal = Input.GetAxis("VRHorizontal");
         float moveVertical = Input.GetAxis("VRVertical");
 

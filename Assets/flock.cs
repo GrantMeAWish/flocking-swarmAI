@@ -27,7 +27,6 @@ public class flock : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
-
 		//bug needs to turn back into colony if distance of bug from center is bigger than colonySize
 		if (Vector3.Distance(transform.position, Vector3.zero) >= globalFlock.colonySize)
 		{
@@ -58,14 +57,14 @@ public class flock : MonoBehaviour {
         transform.Translate(0, 0, Time.deltaTime * speed * speedMult);
     }
 
-	// Flock using flocking rules
+	//flock using flocking rules
 	void Flocking()
 	{
 		GameObject[] gameObjs = globalFlock.allBugs;
 		float groupSpeed = 0.1f;
 
-		/**instantiate vectors for rules 1 & 3 of flocking --> go towards center
-		  *of group & avoid collisions with neighbors*/
+		/**instantiate vectors for rules 1 & 3 of flocking; go towards center of group & 
+         * avoid collisions with neighbors */
 		Vector3 centerVec = Vector3.zero;
 		Vector3 avoidVec = Vector3.zero;
 

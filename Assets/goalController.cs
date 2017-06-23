@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class goalController : MonoBehaviour {
 
+    //goal movement speed
     public float speed;
+
+    //apply physics to goal marker
     private Rigidbody rb;
 
 	// Use this for initialization
@@ -12,6 +15,7 @@ public class goalController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
 	}
 	
+    //apply force vector to goal marker
 	private void FixedUpdate ()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");

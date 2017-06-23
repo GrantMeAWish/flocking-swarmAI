@@ -19,8 +19,8 @@ public class globalFlock : MonoBehaviour {
 	//instantiating goal position
 	public static Vector3 goalPos = Vector3.zero;
 
-    //distance from camera of destination point
-    public static float cameraDist = 5.0f;
+    //distance from camera to destination point
+    public float cameraDist;
 
     //set bug speedMult to be the slider's multiplier
     public void BugSpeed(float speedMult) 
@@ -57,13 +57,13 @@ public class globalFlock : MonoBehaviour {
             goalPrefab.transform.position = goalPos;
             */
         }
-        
+        /*
         //allow bugs to follow user-controlled goal marker
         goalPos = goalPrefab.transform.position;
-        
-        /*
-        //allow bugs to follow camera view
-        goalPos = Camera.main.transform.forward * cameraDist * Time.deltaTime;
         */
+        
+        //allow bugs to follow camera view
+        goalPos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, cameraDist));
+        
     }
 }
