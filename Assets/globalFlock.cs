@@ -10,11 +10,10 @@ public class globalFlock : MonoBehaviour {
 
 	//instantiating colony box dimensions
 	public static int colonySize = 10;
-
-	static int numbugs = 400;
-
-	//instantiating the swarm colony
-	public static GameObject[] allBugs = new GameObject[numbugs];
+    
+    //instantiating the swarm colony
+    static int numBugs = 400;
+	public static GameObject[] allBugs = new GameObject[numBugs];
 
 	//instantiating goal position
 	public static Vector3 goalPos = Vector3.zero;
@@ -26,7 +25,7 @@ public class globalFlock : MonoBehaviour {
     public void BugSpeed(float speedMult) 
     {
         Debug.Log(speedMult);
-        for (int i = 0; i < numbugs; i += 1) 
+        for (int i = 0; i < numBugs; i += 1) 
         {
             allBugs[i].GetComponent<flock>().speedMult = speedMult;
         }
@@ -35,35 +34,34 @@ public class globalFlock : MonoBehaviour {
 	// Use this for initialization
 	void Start()
 	{
-		for (int i = 0; i < numbugs; i += 1)
+		for (int i = 0; i < numBugs; i += 1)
 		{
 			Vector3 pos = new Vector3(Random.Range(-colonySize, colonySize),
 									  Random.Range(-colonySize, colonySize),
 									  Random.Range(-colonySize, colonySize));
-            allBugs[i] = (GameObject) Instantiate(bugPrefab, pos, Quaternion.identity);
-		}
+            allBugs[i] = (GameObject)Instantiate(bugPrefab, pos, Quaternion.identity);
+
+            allBugs[i].AddComponent<playAudio>();
+        }
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+        /*
         //move goal to another location within the colony at random timeframes
         if (Random.Range(0, 10000) < 50)
 		{
-            /*
 			goalPos = new Vector3(Random.Range(-colonySize, colonySize),
 									  Random.Range(-colonySize, colonySize),
 									  Random.Range(-colonySize, colonySize));
             goalPrefab.transform.position = goalPos;
-            */
-        }
+        } */
         /*
         //allow bugs to follow user-controlled goal marker
-        goalPos = goalPrefab.transform.position;
-        */
+        goalPos = goalPrefab.transform.position; */
         
         //allow bugs to follow camera view
         goalPos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, cameraDist));
-        
     }
 }

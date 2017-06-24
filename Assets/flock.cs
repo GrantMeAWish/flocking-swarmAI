@@ -15,7 +15,7 @@ public class flock : MonoBehaviour {
 
 	bool turning = false;
 
-    //initialize speed multiplier that will be controlled by slider
+    //initializing speed multiplier controlled by slider
     public float speedMult = 1;
 
 	// Use this for initialization
@@ -27,7 +27,7 @@ public class flock : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
-		//bug needs to turn back into colony if distance of bug from center is bigger than colonySize
+		//bug needs to turn back into colony if distance of bug from center is larger than colonySize
 		if (Vector3.Distance(transform.position, Vector3.zero) >= globalFlock.colonySize)
 		{
 			turning = true;
@@ -63,7 +63,7 @@ public class flock : MonoBehaviour {
 		GameObject[] gameObjs = globalFlock.allBugs;
 		float groupSpeed = 0.1f;
 
-		/**instantiate vectors for rules 1 & 3 of flocking; go towards center of group & 
+		/**instantiate vectors for rules 1 and 3 of flocking; go towards center of group & 
          * avoid collisions with neighbors */
 		Vector3 centerVec = Vector3.zero;
 		Vector3 avoidVec = Vector3.zero;
@@ -87,7 +87,7 @@ public class flock : MonoBehaviour {
 					centerVec += gameObj.transform.position;
 					groupSize += 1;
 
-					//calculate & add up avoid vectors to prevent collisions if distance too close
+					//calculate and add up avoid vectors to prevent collisions if distance too close
 					if (dist < 1.0f)
 					{
 						avoidVec += (this.transform.position - gameObj.transform.position);
@@ -103,11 +103,11 @@ public class flock : MonoBehaviour {
 
 		if (groupSize > 0)
 		{
-			//calculate average center and average speed of group
+			//calculate average center and speed of group
 			centerVec = centerVec / groupSize + (goalPos - this.transform.position);
             speed = groupSpeed / groupSize * speedMult;
 
-			//change the direction of the bug after determining the new direction vector
+			//change bug direction after determining the new direction vector
 			Vector3 direction = (centerVec + avoidVec) - this.transform.position;
 			if (direction != Vector3.zero)
 			{
