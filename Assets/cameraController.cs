@@ -14,14 +14,14 @@ public class cameraController : MonoBehaviour {
 	void Start () {
         rb = GetComponent<Rigidbody>();
 
-        /*
+        
         //print connected joysticks
         string[] joysticks = Input.GetJoystickNames();
         for (int i = 0; i < joysticks.Length; i++)
         {
             print(joysticks[i] + i.ToString());
         }
-        */
+        
     }
 	
     //assign joystick movement as camera velocity
