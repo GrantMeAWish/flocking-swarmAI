@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\cameraController.cs" />
+    <Compile Include="Assets\entityAudio.cs" />
     <Compile Include="Assets\flock.cs" />
     <Compile Include="Assets\globalFlock.cs" />
     <Compile Include="Assets\goalController.cs" />
