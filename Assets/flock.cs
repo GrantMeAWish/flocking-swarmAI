@@ -6,6 +6,8 @@ public class flock : MonoBehaviour {
 
 	//bug speed
 	public float speed = 0.0005f;
+    public float lowerbound;
+    public float upperbound; 
 
 	//how fast bug will turn
 	float rotSpeed = 4.0f;
@@ -21,7 +23,9 @@ public class flock : MonoBehaviour {
 	// Use this for initialization
 	void Start()
 	{
-		speed = Random.Range(0.5f, 1);
+		speed = Random.Range(lowerbound, upperbound);
+        AudioSource audioSource = this.gameObject.GetComponent<AudioSource>();
+        audioSource.pitch = speed / 3 + 1; //Formula to calculate pitch w.r.t speed
 	}
 
 	// Update is called once per frame
@@ -44,7 +48,7 @@ public class flock : MonoBehaviour {
 			transform.rotation = Quaternion.Slerp(transform.rotation,
 									  Quaternion.LookRotation(direction),
 									  rotSpeed * Time.deltaTime);
-            speed = Random.Range(0.5f, 1) * speedMult;
+            speed = Random.Range(lowerbound, upperbound) * speedMult;
 		}
 		else
 		{

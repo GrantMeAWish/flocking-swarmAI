@@ -41,7 +41,7 @@ public class globalFlock : MonoBehaviour {
 									  Random.Range(-colonySize, colonySize));
             allBugs[i] = (GameObject)Instantiate(bugPrefab, pos, Quaternion.identity);
 
-            allBugs[i].AddComponent<playAudio>();
+            //allBugs[i].AddComponent<playAudio>();
         }
 	}
 
