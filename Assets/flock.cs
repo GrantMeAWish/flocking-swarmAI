@@ -1,4 +1,4 @@
-﻿﻿﻿using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,8 +6,8 @@ public class flock : MonoBehaviour {
 
 	//bug speed
 	public float speed = 0.0005f;
-    public float lowerbound;
-    public float upperbound; 
+    public float lowerbound = 2.5f;
+    public float upperbound = 3f; 
 
 	//how fast bug will turn
 	float rotSpeed = 4.0f;
@@ -31,6 +31,10 @@ public class flock : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
+		//Initializes speed and audio pitch; must be in Update() since I have it as a slider
+		speed = Random.Range(lowerbound, upperbound);
+		AudioSource audioSource = this.gameObject.GetComponent<AudioSource>();
+		audioSource.pitch = speed / 3 + 1; //Formula to calculate pitch w.r.t speed
 		//bug needs to turn back into colony if distance of bug from center is larger than colonySize
 		if (Vector3.Distance(transform.position, Vector3.zero) >= globalFlock.colonySize)
 		{

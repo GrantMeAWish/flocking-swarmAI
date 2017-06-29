@@ -1,4 +1,4 @@
-﻿﻿﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +7,8 @@ public class globalFlock : MonoBehaviour {
 	//read in the bug and goal prefabs
 	public GameObject bugPrefab;
 	public GameObject goalPrefab;
-
+	public float lowerbound;
+	public float upperbound; 
 	//instantiating colony box dimensions
 	public static int colonySize = 10;
     
@@ -25,10 +26,30 @@ public class globalFlock : MonoBehaviour {
     public void BugSpeed(float speedMult) 
     {
         Debug.Log(speedMult);
-        for (int i = 0; i < numBugs; i += 1) 
-        {
-            allBugs[i].GetComponent<flock>().speedMult = speedMult;
-        }
+		if (speedMult == 1) {
+			for (int i = 0; i < numBugs; i += 1) {
+				//allBugs[i].GetComponent<flock>().speedMult = speedMult;
+				allBugs[i].GetComponent<flock>().lowerbound = 3f;
+				allBugs[i].GetComponent<flock>().upperbound = 4f;
+
+			}
+			
+		} else {
+			for (int i = 0; i < numBugs; i += 1) {
+				//allBugs[i].GetComponent<flock>().speedMult = speedMult;
+				allBugs [i].GetComponent<flock> ().lowerbound = 8.5f;
+				allBugs [i].GetComponent<flock> ().upperbound = 9f;
+
+			}
+			
+		}
+
+		for (int i = 0; i < numBugs; i += 1) {
+			allBugs [i].GetComponent<flock> ().lowerbound = speedMult + 0.5f;
+			allBugs [i].GetComponent<flock> ().upperbound = speedMult + 1f;
+
+		}
+
     }
 
 	// Use this for initialization
@@ -40,7 +61,8 @@ public class globalFlock : MonoBehaviour {
 									  Random.Range(-colonySize, colonySize),
 									  Random.Range(-colonySize, colonySize));
             allBugs[i] = (GameObject)Instantiate(bugPrefab, pos, Quaternion.identity);
-
+			allBugs[i].GetComponent<flock>().lowerbound = lowerbound;
+			allBugs[i].GetComponent<flock>().upperbound = upperbound;
             //allBugs[i].AddComponent<playAudio>();
         }
 	}
