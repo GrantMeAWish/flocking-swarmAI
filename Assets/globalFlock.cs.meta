@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 34157f60409114e25b2a6157f7b55bd0
+timeCreated: 1497473237
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - bugPrefab: {fileID: 138252, guid: be999fe03c257ec4cb0a3a4b5ca72217, type: 2}
+  - goalPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
