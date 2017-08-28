@@ -13,13 +13,23 @@ public class cameraController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 33d49564984bcc63b624c06661d0594d0ccb9b56
         
         //print connected joysticks
         string[] joysticks = Input.GetJoystickNames();
         for (int i = 0; i < joysticks.Length; i++)
         {
+<<<<<<< HEAD
             print(joysticks[i] + " " + i.ToString());
         }
+=======
+            print(joysticks[i] + i.ToString());
+        }
+        
+>>>>>>> 33d49564984bcc63b624c06661d0594d0ccb9b56
     }
 	
     //assign joystick movement as camera velocity

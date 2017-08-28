@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/_3D Scifi Kit Starter Kit/Example_01.unity
+=======
+- path: Assets/Flock Scene.unity
+>>>>>>> 33d49564984bcc63b624c06661d0594d0ccb9b56
   isLoaded: 1
   isActive: 1

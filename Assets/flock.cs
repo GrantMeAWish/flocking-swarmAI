@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class flock : MonoBehaviour {
 
+<<<<<<< HEAD
 	//bug speed and boundaries
 	public float speed = 0.0005f;
     public float lowerBound = 2.5f;
     public float upperBound = 3f; 
+=======
+	//bug speed
+	public float speed = 0.0005f;
+    public float lowerbound = 2.5f;
+    public float upperbound = 3f; 
+>>>>>>> 33d49564984bcc63b624c06661d0594d0ccb9b56
 
 	//how fast bug will turn
 	float rotSpeed = 4.0f;
@@ -23,21 +30,34 @@ public class flock : MonoBehaviour {
 	// Use this for initialization
 	void Start()
 	{
+<<<<<<< HEAD
         //initialize speed and audio pitch; must be in Update() since I have it as a slider
         speed = Random.Range(lowerBound, upperBound);
         AudioSource audioSource = this.gameObject.GetComponent<AudioSource>();
 
         //calculate pitch w.r.t. speed
         audioSource.pitch = speed / 3 + 1;
+=======
+		speed = Random.Range(lowerbound, upperbound);
+        AudioSource audioSource = this.gameObject.GetComponent<AudioSource>();
+        audioSource.pitch = speed / 3 + 1; //Formula to calculate pitch w.r.t speed
+>>>>>>> 33d49564984bcc63b624c06661d0594d0ccb9b56
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+<<<<<<< HEAD
 		speed = Random.Range(lowerBound, upperBound);
 		AudioSource audioSource = this.gameObject.GetComponent<AudioSource>();
         audioSource.pitch = speed / 3 + 1;
 
+=======
+		//Initializes speed and audio pitch; must be in Update() since I have it as a slider
+		speed = Random.Range(lowerbound, upperbound);
+		AudioSource audioSource = this.gameObject.GetComponent<AudioSource>();
+		audioSource.pitch = speed / 3 + 1; //Formula to calculate pitch w.r.t speed
+>>>>>>> 33d49564984bcc63b624c06661d0594d0ccb9b56
 		//bug needs to turn back into colony if distance of bug from center is larger than colonySize
 		if (Vector3.Distance(transform.position, Vector3.zero) >= globalFlock.colonySize)
 		{
@@ -55,7 +75,11 @@ public class flock : MonoBehaviour {
 			transform.rotation = Quaternion.Slerp(transform.rotation,
 									  Quaternion.LookRotation(direction),
 									  rotSpeed * Time.deltaTime);
+<<<<<<< HEAD
             speed = Random.Range(lowerBound, upperBound) * speedMult;
+=======
+            speed = Random.Range(lowerbound, upperbound) * speedMult;
+>>>>>>> 33d49564984bcc63b624c06661d0594d0ccb9b56
 		}
 		else
 		{
@@ -111,6 +135,10 @@ public class flock : MonoBehaviour {
 			}
 		}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 33d49564984bcc63b624c06661d0594d0ccb9b56
 		if (groupSize > 0)
 		{
 			//calculate average center and speed of group
